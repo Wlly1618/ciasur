@@ -1,0 +1,3 @@
+
+// parte de lo que entiendo
+Desde la física mi entidad puede ser un fenómeno, una partícula, esta puede tener una masa que se verá afectada de diferente forma por la gravedad. El enfoque sistémico me permite realizar diferentes análisis desde los puntos que requiero, puedo tener una partícula y analizar todos sus pesos desde distintas gravedades, simulando que se encuentra en otro planeta.

@@ -1,0 +1,11 @@
+id	raza	enfermedad	
+1	ifk	fdasf	
+2	fdas	dfsawer	
+3	fads	q	
+4	fdas	tre	
+5	fadsf	gfds	
+6	afsd	iuyt	
+7	saf	iuyt	
+8	q	rter	
+9	ewqe	iuyt	
+10	ewq213	tuiyt	
