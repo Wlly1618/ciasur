@@ -1,11 +1,11 @@
 # Documentacion
 ## Librerias
-- xlrd
-  - esta libreria es  para el trabajo con los .xlsx, osea versiones de 20016 en adelante
-- openpyxl
-  - esta libreria es para el trabajo con los .xls, osea versiones de 2007 en adelante
-- csv
-  - esta libreria es para crear los archivos .csv
+> - xlrd<br>
+  esta libreria es  para el trabajo con los .xlsx, osea versiones de 20016 en adelante
+> - openpyxl<br>
+  esta libreria es para el trabajo con los .xls, osea versiones de 2007 en adelante
+> - csv<br>
+  esta libreria es para crear los archivos .csv
 
 ## Funciones
 ### write_data()
