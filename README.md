@@ -12,10 +12,6 @@
 > Parametros:
 > - year, month = fechas para luego realizar la creacion del documento
 > -  data_fo_f2, data_fo_f2_correct  = datos que seran incluidos dentro del archivo .csv
-```python
-def write_data(year, month, data_fo_f2, data_fo_f2_correct):
-```
-
 > Variables:
 > - data_time = es el rango de horas que existen, desde 0-23
 > - header = es la cabecera de los elementos del .csv
@@ -49,49 +45,47 @@ with open(file, 'w', newline='') as archivo_csv:
 > -  Luego se obtiene las fechas  para obtener las celdas a recorrer
 > - Por ultimo  se obtiene los datos de  las diferentes  hojas y  se envian a write_data()
 ```python
-        # para archivos .xlxs
-        workbook = xlrd.open_workbook(route)
-        worksheets_names = workbook.sheet_names()
+# para archivos .xlxs
+workbook = xlrd.open_workbook(route)
+worksheets_names = workbook.sheet_names()
 
-        worksheet_fof2 = workbook.sheet_by_name(worksheets_names[0])
-        worksheet_fof2_correct = workbook.sheet_by_name(worksheets_names[2])
+worksheet_fof2 = workbook.sheet_by_name(worksheets_names[0])
+worksheet_fof2_correct = workbook.sheet_by_name(worksheets_names[2])
 
-        month: int = int(worksheet_fof2.cell_value(5, 5))
-        year: int = int(worksheet_fof2.cell_value(5, 7))
-        amo_days = calendar.monthrange(year=year, month=month)
+month: int = int(worksheet_fof2.cell_value(5, 5))
+year: int = int(worksheet_fof2.cell_value(5, 7))
+amo_days = calendar.monthrange(year=year, month=month)
 
-        data_fo_f2 = get_data_fo_f2_xls(worksheet_fof2, amo_days[1])
-        data_fo_f2_correct = get_data_fo_f2_xls(worksheet_fof2_correct, amo_days[1])
+data_fo_f2 = get_data_fo_f2_xls(worksheet_fof2, amo_days[1])
+data_fo_f2_correct = get_data_fo_f2_xls(worksheet_fof2_correct, amo_days[1])
 
-        write_data(year, month, data_fo_f2, data_fo_f2_correct, folder)
+write_data(year, month, data_fo_f2, data_fo_f2_correct, folder)
 ```
 ```python
-        # para archivos .cl
-        workbook = openpyxl.load_workbook(route)
-        worksheet_fof2 = workbook[workbook.sheetnames[0]]
-        worksheet_fof2_correct = workbook[workbook.sheetnames[2]]
+# para archivos .cl
+workbook = openpyxl.load_workbook(route)
+worksheet_fof2 = workbook[workbook.sheetnames[0]]
+worksheet_fof2_correct = workbook[workbook.sheetnames[2]]
 
-        month: int = int(worksheet_fof2['F6'].value)
-        year: int = int(worksheet_fof2['H6'].value)
-        amo_days = calendar.monthrange(year=year, month=month)
+month: int = int(worksheet_fof2['F6'].value)
+year: int = int(worksheet_fof2['H6'].value)
+amo_days = calendar.monthrange(year=year, month=month)
 
-        data_fo_f2 = get_data_fo_f2_xlsx(worksheet_fof2, amo_days[1])
-        data_fo_f2_correct = get_data_fo_f2_xlsx(worksheet_fof2_correct, amo_days[1])
+data_fo_f2 = get_data_fo_f2_xlsx(worksheet_fof2, amo_days[1])
+data_fo_f2_correct = get_data_fo_f2_xlsx(worksheet_fof2_correct, amo_days[1])
 
-        write_data(year, month, data_fo_f2, data_fo_f2_correct, folder)
-        workbook.close()
+write_data(year, month, data_fo_f2, data_fo_f2_correct, folder)
+workbook.close()
 ```
 
 ### read_folder():
 > Funcionamiento: esta funcionalidad es la que permite seleccionar la carpeta en la cual se trabajara
 ```python
-def read_folder():
-    route_folder = filedialog.askdirectory()
-    file_names = os.listdir(route_folder)
-    file_paths = [os.path.join(route_folder, name_file) for name_file in file_names if
-                  os.path.isfile(os.path.join(route_folder, name_file))]
+route_folder = filedialog.askdirectory()
+file_names = os.listdir(route_folder)
+file_paths = [os.path.join(route_folder, name_file) for name_file in file_names if os.path.isfile(os.path.join(route_folder, name_file))]
 
-    return file_paths
+return file_paths
 ```
 
 ### main()
@@ -99,16 +93,16 @@ def read_folder():
 > Luego de controla las extensiones de los archivos para mandar con la funcion correspondiente
 > Tambien pregunta seleccionar la carpeta donde se guardaran los .csv
 ```python
-    list_routes = read_folder()
-    route_folder = filedialog.askdirectory()
-    print(route_folder)
-    for route in list_routes:
-        ext = os.path.splitext(route)[1]
-        print(route)
-        if '.xlsx' == ext:
-            read_and_write_xlsx(route, route_folder)
-        elif '.xls' == ext:
-            read_and_write_xls(route, route_folder)
-        else:
-            print('No excel file')
+list_routes = read_folder()
+route_folder = filedialog.askdirectory()
+print(route_folder)
+for route in list_routes:
+    ext = os.path.splitext(route)[1]
+    print(route)
+    if '.xlsx' == ext:
+        read_and_write_xlsx(route, route_folder)
+    elif '.xls' == ext:
+        read_and_write_xls(route, route_folder)
+    else:
+        print('No excel file')
 ```
